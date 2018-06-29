@@ -21,9 +21,40 @@ class History extends BaseModel
     protected $table = 'history';
 
     /**
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = ['deleted_at'];
+
+    /**
+     * The date fields for the model.clear
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['type_id', 'user_id', 'entity_id', 'icon', 'class', 'text', 'assets'];
+    protected $fillable = [
+        'type_id', 
+        'user_id', 
+        'entity_id', 
+        'icon', 
+        'class', 
+        'text', 
+        'assets'
+    ];
 }

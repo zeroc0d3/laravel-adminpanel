@@ -22,9 +22,37 @@ class BlogCategory extends BaseModel
      *
      * @var string
      */
-    protected $table;
+    protected $table = 'blog_categories';
 
-    protected $fillable = ['name', 'status', 'created_by', 'updated_by'];
+    /**
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = ['deleted_at'];
+
+    /**
+     * The date fields for the model.clear
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+    
+    protected $fillable = [
+        'name', 
+        'status', 
+        'created_by', 
+        'updated_by'
+    ];
 
     public function __construct(array $attributes = [])
     {

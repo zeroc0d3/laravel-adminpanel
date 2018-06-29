@@ -5,7 +5,7 @@ namespace App\Models\Page;
 use App\Models\BaseModel;
 use App\Models\ModelTrait;
 use App\Models\Page\Traits\Attribute\PageAttribute;
-use App\Models\Page\Traits\PageRelationship;
+use App\Models\Page\Traits\Relationship\PageRelationship;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Page extends BaseModel
@@ -22,7 +22,30 @@ class Page extends BaseModel
      *
      * @var string
      */
-    protected $table;
+    protected $table = 'pages';
+
+    /**
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = ['deleted_at'];
+
+    /**
+     * The date fields for the model.clear
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 
     /**
      * The guarded field which are not mass assignable.

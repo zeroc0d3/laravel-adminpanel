@@ -15,14 +15,42 @@ class EmailTemplate extends BaseModel
             // EmailTemplateAttribute::getEditButtonAttribute insteadof ModelTrait;
         }
 
-    protected $guarded = ['id'];
-
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table;
+    protected $table = 'email_templates';
+
+    /**
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = ['deleted_at'];
+
+    /**
+     * The date fields for the model.clear
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
+     /**
+     * The guarded field which are not mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = ['id'];
 
     public function __construct(array $attributes = [])
     {

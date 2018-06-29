@@ -29,7 +29,34 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var string
      */
-    protected $table;
+    protected $table = 'users';
+
+    /**
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 
+        'remember_token', 
+        'deleted_at'
+    ];
+
+    /**
+     * The date fields for the model.clear
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -46,18 +73,6 @@ class User extends Authenticatable implements JWTSubject
         'created_by',
         'updated_by',
     ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = ['password', 'remember_token'];
-
-    /**
-     * @var array
-     */
-    protected $dates = ['deleted_at'];
 
     /**
      * @param array $attributes

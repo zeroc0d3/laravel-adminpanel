@@ -17,6 +17,36 @@ class Blog extends BaseModel
             // BlogAttribute::getEditButtonAttribute insteadof ModelTrait;
         }
 
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'blogs';
+
+    /**
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = ['deleted_at'];
+
+    /**
+     * The date fields for the model.clear
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+    
     protected $fillable = [
         'name',
         'slug',
@@ -30,19 +60,6 @@ class Blog extends BaseModel
         'featured_image',
         'created_by',
     ];
-
-    protected $dates = [
-        'publish_datetime',
-        'created_at',
-        'updated_at',
-    ];
-
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table;
 
     public function __construct(array $attributes = [])
     {
