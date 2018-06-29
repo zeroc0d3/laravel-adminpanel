@@ -9,9 +9,11 @@
         <title>@yield('title', app_name())</title>
 
         <!-- Meta -->
-        <meta name="description" content="@yield('meta_description', 'Default Description')">
-        <meta name="author" content="@yield('meta_author', 'Viral Solani')">
+        <meta name="description" content="@yield('meta_description', 'Laravel AdminPanel')">
+        <meta name="author" content="@yield('meta_author', 'ZeroC0D3 Lab')">
         <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+        <!-- Ionicons -->
+        <!--<link href="{!! URL('http://code.ionicframework.com/1.3.3/css/ionic.min.css') !!}" rel="stylesheet">-->
         @yield('meta')
 
         <!-- Styles -->

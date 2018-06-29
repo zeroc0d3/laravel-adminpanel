@@ -44,6 +44,14 @@
                             <th></th>
                         </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <th>{{ trans('labels.backend.access.permissions.table.permission') }}</th>
+                            <th>{{ trans('labels.backend.access.permissions.table.display_name') }}</th>
+                            <th>{{ trans('labels.backend.access.permissions.table.sort') }}</th>
+                            <th>{{ trans('labels.general.actions') }}</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div><!--table-responsive-->
         </div><!-- /.box-body -->

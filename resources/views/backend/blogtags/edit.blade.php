@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-    {{ Form::model($blogtag, ['route' => ['admin.blogTags.update', $blogtag], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH', 'id' => 'edit-blogtags']) }}
+    {{ Form::model($blogtag, ['route' => ['admin.blogTags.update', $blogtag], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH', 'id' => 'edit-blogtag']) }}
 
         <div class="box box-info">
             <div class="box-header with-border">

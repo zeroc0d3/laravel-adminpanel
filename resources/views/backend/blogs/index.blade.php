@@ -32,7 +32,7 @@
                     <thead class="transparent-bg">
                         <tr>
                             <th>
-                                {!! Form::text('first_name', null, ["class" => "search-input-text form-control", "data-column" => 0, "placeholder" => trans('labels.backend.blogs.table.title')]) !!}
+                                {!! Form::text('title', null, ["class" => "search-input-text form-control", "data-column" => 0, "placeholder" => trans('labels.backend.blogs.table.title')]) !!}
                                 <a class="reset-data" href="javascript:void(0)"><i class="fa fa-times"></i></a>
                             </th>
                             <th></th>
@@ -44,6 +44,16 @@
                             <th></th>
                         </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <th>{{ trans('labels.backend.blogs.table.title') }}</th>
+                            <th>{{ trans('labels.backend.blogs.table.publish') }}</th>
+                            <th>{{ trans('labels.backend.blogs.table.status') }}</th>
+                            <th>{{ trans('labels.backend.blogs.table.createdby') }}</th>
+                            <th>{{ trans('labels.backend.blogs.table.createdat') }}</th>
+                            <th>{{ trans('labels.general.actions') }}</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div><!--table-responsive-->
         </div><!-- /.box-body -->

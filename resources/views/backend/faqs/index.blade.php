@@ -46,6 +46,15 @@
                             <th></th>
                         </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <th>{{ trans('labels.backend.faqs.table.question') }}</th>
+                            <th>{{ trans('labels.backend.faqs.table.answer') }}</th>
+                            <th>{{ trans('labels.backend.faqs.table.status') }}</th>
+                            <th>{{ trans('labels.backend.faqs.table.updatedat') }}</th>
+                            <th>{{ trans('labels.general.actions') }}</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div><!--table-responsive-->
         </div><!-- /.box-body -->

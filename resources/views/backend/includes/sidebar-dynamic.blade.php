@@ -11,6 +11,7 @@
                     <span>{{ trans('menus.backend.sidebar.dashboard') }}</span>
                 </a>
             </li>
+
             <li class="header">{{ trans('menus.backend.sidebar.system') }}</li>
             {{ renderMenuItems(getMenuItems()) }}
         </ul><!-- /.sidebar-menu -->

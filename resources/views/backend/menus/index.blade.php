@@ -43,6 +43,14 @@
                             <th></th>
                         </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <th>{{ trans('labels.backend.menus.table.name') }}</th>
+                            <th>{{ trans('labels.backend.menus.table.type') }}</th>
+                            <th>{{ trans('labels.backend.menus.table.createdat') }}</th>
+                            <th>{{ trans('labels.general.actions') }}</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div><!--table-responsive-->
         </div><!-- /.box-body -->

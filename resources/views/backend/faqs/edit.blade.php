@@ -10,14 +10,14 @@
 @endsection
 
 @section('content')
-    {{ Form::model($faq, ['route' => ['admin.faqs.update', $faq], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH', 'id' => 'edit-faqs']) }}
+    {{ Form::model($faq, ['route' => ['admin.faqs.update', $faq], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH', 'id' => 'edit-faq']) }}
 
         <div class="box box-info">
             <div class="box-header with-border">
                 <h3 class="box-title">{{ trans('labels.backend.faqs.edit') }}</h3>
 
                 <div class="box-tools pull-right">
-                    @include('backend.includes.partials.faqs-header-buttons')
+                    @include('backend.faqs.partials.faqs-header-buttons')
                 </div><!--box-tools pull-right-->
             </div><!-- /.box-header -->
 

@@ -42,6 +42,15 @@
                             <th></th>
                         </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <th>{{ trans('labels.backend.blogtags.table.title') }}</th>
+                            <th>{{ trans('labels.backend.blogtags.table.status') }}</th>
+                            <th>{{ trans('labels.backend.blogtags.table.createdby') }}</th>
+                            <th>{{ trans('labels.backend.blogtags.table.createdat') }}</th>
+                            <th>{{ trans('labels.general.actions') }}</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div><!--table-responsive-->
         </div><!-- /.box-body -->

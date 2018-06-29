@@ -60,6 +60,16 @@
                             <th></th>
                         </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <th>{{ trans('labels.backend.emailtemplates.table.title') }}</th>
+                            <th>{{ trans('labels.backend.emailtemplates.table.subject') }}</th>
+                            <th>{{ trans('labels.backend.emailtemplates.table.status') }}</th>
+                            <th>{{ trans('labels.backend.emailtemplates.table.createdat') }}</th>
+                            <th>{{ trans('labels.backend.emailtemplates.table.updatedat') }}</th>
+                            <th>{{ trans('labels.general.actions') }}</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div><!--table-responsive-->
         </div><!-- /.box-body -->
