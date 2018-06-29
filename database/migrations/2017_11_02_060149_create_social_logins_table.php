@@ -20,6 +20,7 @@ class CreateSocialLoginsTable extends Migration
             $table->string('token', 191)->nullable();
             $table->string('avatar', 191)->nullable();
             $table->timestamps();
+            $table->softDeletesTz();
         });
     }
 

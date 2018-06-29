@@ -16,6 +16,7 @@ class CreateHistoryTypesTable extends Migration
             $table->increments('id');
             $table->string('name', 191);
             $table->timestamps();
+            $table->softDeletesTz();
         });
     }
 

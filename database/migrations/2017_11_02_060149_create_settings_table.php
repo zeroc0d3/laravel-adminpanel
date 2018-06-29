@@ -41,6 +41,7 @@ class CreateSettingsTable extends Migration
             $table->string('explanation3', 191)->nullable();
             $table->string('explanation4', 191)->nullable();
             $table->timestamps();
+            $table->softDeletesTz();
         });
     }
 

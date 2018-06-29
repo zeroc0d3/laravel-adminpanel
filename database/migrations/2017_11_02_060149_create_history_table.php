@@ -22,6 +22,7 @@ class CreateHistoryTable extends Migration
             $table->string('text', 191);
             $table->text('assets', 65535)->nullable();
             $table->timestamps();
+            $table->softDeletesTz();
         });
     }
 

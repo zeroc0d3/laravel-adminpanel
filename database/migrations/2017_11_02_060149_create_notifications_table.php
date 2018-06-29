@@ -19,6 +19,7 @@ class CreateNotificationsTable extends Migration
             $table->boolean('type')->default(1)->comment('1 - Dashboard , 2 - Email , 3 - Both');
             $table->boolean('is_read')->default(0);
             $table->timestamps();
+            $table->softDeletesTz();
         });
     }
 

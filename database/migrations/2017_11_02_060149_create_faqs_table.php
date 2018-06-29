@@ -18,7 +18,7 @@ class CreateFaqsTable extends Migration
             $table->text('answer', 65535);
             $table->boolean('status')->default(0);
             $table->timestamps();
-            $table->softDeletes();
+            $table->softDeletesTz();
         });
     }
 
