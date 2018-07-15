@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->command->info(' BEGIN [Seed Process]');
-        $this->command->info('-----------------------------------');
+        $this->command->info(' BEGIN - On Progress Seeding...');
+        $this->command->info('=============================================');
 
         $this->call(AccessTableSeeder::class);
         
@@ -46,8 +46,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ModulesTableSeeder::class);
         $this->command->info('>> Modules table seeded!');
 
-        $this->command->info('-----------------------------------');
-        $this->command->info(' END [All Data Seeded]');
+        $this->command->info('=============================================');
+        $this->command->info(' END - All Data Seeded!');
 
         Model::reguard();
     }
