@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Responses\Backend\Menu;
+namespace App\Http\Responses\Backend\BlogCategory;
 
 use Illuminate\Contracts\Support\Responsable;
 
