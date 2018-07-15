@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>We're sorry, for maintenance schedule (503)</title>
+  <title>The change you wanted was rejected (422)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
     body {
@@ -193,17 +193,19 @@
 </head>
 
 <body>
+<!-- This file lives in public/422.html -->
 <div class="dialog">
   <div>
-      <h1>{{ trans('http.503.title') }}</h1>
+      <h1>{{ trans('http.422.title') }}</h1>
   </div>
-  <p>{{ trans('http.503.description') }}</p>
+  <p>{{ trans('http.422.description') }}</p>
+  <p>If you are the application owner check the logs for more information.</p>
 </div>
 <div class="error-page-wrap">
   <article class="error-page gradient">
     <hgroup>
-      <h1>503</h1>
-      <h2>Maintenance Server</h2>
+      <h1>422</h1>
+      <h2>Unprocessable Entity</h2>
     </hgroup>
   </article>
 </div>

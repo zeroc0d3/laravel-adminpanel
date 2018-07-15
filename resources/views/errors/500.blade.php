@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>We're sorry, for maintenance schedule (503)</title>
+  <title>We're sorry, but something went wrong (500)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
     body {
@@ -195,15 +195,15 @@
 <body>
 <div class="dialog">
   <div>
-      <h1>{{ trans('http.503.title') }}</h1>
+        <h1>{{ trans('http.500.title') }}</h1>
   </div>
-  <p>{{ trans('http.503.description') }}</p>
+  <p>{{ trans('http.500.description') }}</p>
 </div>
 <div class="error-page-wrap">
   <article class="error-page gradient">
     <hgroup>
-      <h1>503</h1>
-      <h2>Maintenance Server</h2>
+      <h1>500</h1>
+      <h2>Internal Server Error</h2>
     </hgroup>
   </article>
 </div>
