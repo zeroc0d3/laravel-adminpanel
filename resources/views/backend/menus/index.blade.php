@@ -75,6 +75,13 @@
 
     <script>
         $(function() {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
             var dataTable = $('#menus-table').dataTable({
                 processing: true,
                 serverSide: true,
@@ -99,6 +106,9 @@
                         { extend: 'pdf', className: 'pdfButton',  exportOptions: {columns: [ 0, 1, 2, 3, 4 ]  }},
                         { extend: 'print', className: 'printButton',  exportOptions: {columns: [ 0, 1, 2, 3, 4 ]  }}
                     ]
+                },
+                language: {
+                    @lang('datatable.strings')
                 }
             });
 

@@ -30,9 +30,11 @@ class BlogTagsController extends APIController
     public function index(Request $request)
     {
         $limit = $request->get('paginate') ? $request->get('paginate') : 25;
+        $orderBy = $request->get('orderBy') ? $request->get('orderBy') : 'ASC';
+        $sortBy = $request->get('sortBy') ? $request->get('sortBy') : 'created_at';
 
         return BlogTagsResource::collection(
-            $this->repository->getForDataTable()->paginate($limit)
+            $this->repository->getForDataTable()->orderBy($sortBy, $orderBy)->paginate($limit)
         );
     }
 
@@ -80,7 +82,7 @@ class BlogTagsController extends APIController
         $validation = $this->validatingRequest($request, $blog_tag->id);
 
         if ($validation->fails()) {
-            return $this->throwValidation($validation);
+            return $this->throwValidation($validation->messages()->first());
         }
 
         $this->repository->update($blog_tag, $request->all());

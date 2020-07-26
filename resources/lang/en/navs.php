@@ -32,4 +32,8 @@ return [
             'profile'         => 'Profile',
         ],
     ],
+
+    'backend' => [
+        'dashboard' => 'Dashboard',
+    ],
 ];

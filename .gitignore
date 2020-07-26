@@ -16,6 +16,7 @@ Thumbs.db
 _ide_helper.php
 composer.phar
 error.log
+access.log
 Todo.rtf
 .vagrant
 /.vagrant
@@ -35,3 +36,6 @@ public/img/backend/blog_images/*
 public/mix-manifest.json
 public/access.log
 public/error.log
+!public/js/jquerysession.min.js
+output.txt
+.php_cs.cache

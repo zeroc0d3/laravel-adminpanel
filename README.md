@@ -5,10 +5,12 @@
 [![GitHub issues](https://img.shields.io/github/issues/viralsolani/laravel-adminpanel.svg?style=plastic)](https://github.com/viralsolani/laravel-adminpanel/issues)
 ![StyleCI](https://img.shields.io/badge/styleCI-passed-brightgreen.svg?style=plastic)
 
+## [Demo](https://laravel-adminpanel.vrkansagara.in/)
 
 ## Introduction
 * This is a laravel Admin Panel, based on [Rappasoft Laravel Boilerplate](https://github.com/rappasoft/laravel-5-boilerplate/releases/tag/4.5.7), with enhancemenets and many modules pre-made, just for you.
 * The project is taken to Laravel 5.6 so we can develop from the latest Laravel.
+* Article on our Admin Panel on CodeWall : [https://www.codewall.co.uk/the-laravel-admin-panel-that-you-need/](https://www.codewall.co.uk/the-laravel-admin-panel-that-you-need/)
 
 ## Features
 For Laravel 5 Boilerplate Features : [Features](https://github.com/rappasoft/laravel-5-boilerplate/wiki#features)
@@ -16,11 +18,15 @@ For Laravel 5 Boilerplate Features : [Features](https://github.com/rappasoft/lar
 ## Additional Features
 * Built-in Laravel Boilerplate Module Generator,
 * Dynamic Menu/Sidebar Builder
-* CMS Pages Module
-* Email Template Module
+* Pages Module
 * Blog Module
 * FAQ Module
-* API Boilerplate.
+* API Boilerplate
+* Mailables
+* Responses
+* Vue Components
+* Laravel Mix
+* Object based javascript Implementation
 
 Give your project a Head Start by using [laravel-adminpanel](https://github.com/viralsolani/laravel-adminpanel).
 
@@ -42,21 +48,22 @@ Switch to the repo folder
 
     cd laravel-adminpanel
 
-Copy the example env file and make the required configuration changes in the .env file
+If you have linux system, you can execute the command below only in your project root
 
-    cp .env.example .env
+    1) sudo chmod -R 777 install.sh
+    2) ./install.sh
 
-Install all the dependencies using composer
+If you have windows system, you can run Artisan Command for database setup, connection and configuration.
 
-    composer install
+    php artisan install:app
 
 Generate a new application key
 
     php artisan key:generate
 
-Generate a new JWT authentication secret key
+Install Passport
 
-    php artisan jwt:secret
+    php artisan passport:install
 
 Run the database migrations (**Set the database connection in .env before migrating**)
 
@@ -79,7 +86,7 @@ For generating the files of unisharp file manager
     php artisan vendor:publish --tag=lfm_public
 
 For linking storage folder in public
-    
+
     php artisan storage:link
 
 Start the local development server
@@ -87,10 +94,9 @@ Start the local development server
     php artisan serve
 
 
-
 You can now access the server at http://localhost:8000
 
-**TL;DR command list**
+**Command list**
 
     git clone https://github.com/viralsolani/laravel-adminpanel.git
     cd laravel-adminpanel
@@ -100,14 +106,27 @@ You can now access the server at http://localhost:8000
     npm run development
     php artisan storage:link
     php artisan key:generate
-    php artisan jwt:secret
+    php artisan passport:install
     php artisan vendor:publish --tag=lfm_public
+    php artisan migrate
+    php artisan passport:install
+
+## Please note
+
+- To run test cases, add SQLite support to your php
+
+## Other Important Commands
+- To fix php coding standard issues run - composer format
+- To perform various self diagnosis tests on your Laravel application. run - php artisan self-diagnosis
+- To clear all cache run - composer clear-all
+- To built Cache run - composer cache-all
+- To clear and built cache run - composer cc
 
 ## Logging In
 
 `php artisan db:seed` adds three users with respective roles. The credentials are as follows:
 
-* Admin Istrator: `admin@admin.com`
+* Administrator: `admin@admin.com`
 * Backend User: `executive@executive.com`
 * Default User: `user@user.com`
 
@@ -129,7 +148,12 @@ Password: `1234`
 If you come across any issues please report them [here](https://github.com/viralsolani/laravel-adminpanel/issues).
 
 ## Contributing
-Feel free to create any pull requests for the project. For proposing any new changes or features you want to add to the project, you can send us an email at viral.solani@gmail.com or basapativipulkumar@gmail.com.
+Feel free to create any pull requests for the project. For proposing any new changes or features you want to add to the project, you can send us an email at following addresses.
+
+    (1) Viral Solani - viral.solani@gmail.com
+    (2) Vipul Basapati - basapativipulkumar@gmail.com
+    (3) Vallabh Kansagara - vrkansagara@gmail.com
+    (4) Kamlesh Gupta - webworldgk@gmail.com
 
 ## License
 

@@ -21,11 +21,12 @@
 
         <!-- Check if the language is set to RTL, so apply the RTL layouts -->
         <!-- Otherwise apply the normal LTR layouts -->
-        @langRTL
+        @langrtl
             {{ Html::style(getRtlCss(mix('css/backend.css'))) }}
         @else
             {{ Html::style(mix('css/backend.css')) }}
-        @endif
+        @endlangrtl
+
         {{ Html::style(mix('css/backend-custom.css')) }}
         @yield('after-styles')
 
@@ -38,10 +39,13 @@
 
         <!-- Scripts -->
         <script>
-            window.Laravel = <?php echo json_encode([
-                'csrfToken' => csrf_token(),
-            ]); ?>
+            window.Laravel = {!! json_encode([ 'csrfToken' => csrf_token() ]) !!};
         </script>
+        <?php
+            if (!empty($google_analytics)) {
+                echo $google_analytics;
+            }
+        ?>
     </head>
     <body class="skin-{{ config('backend.theme') }} {{ config('backend.layout') }}">
         <div class="loading" style="display:none"></div>

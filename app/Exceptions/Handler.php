@@ -53,7 +53,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        //dd($exception);
         if (strpos($request->url(), '/api/') !== false) {
             \Log::debug('API Request Exception - '.$request->url().' - '.$exception->getMessage().(!empty($request->all()) ? ' - '.json_encode($request->except(['password'])) : ''));
 
@@ -89,13 +88,8 @@ class Handler extends ExceptionHandler
             */
             if ($exception instanceof UnauthorizedHttpException) {
                 switch (get_class($exception->getPrevious())) {
-                    case \App\Exceptions\Handler::class:
+                    case self::class:
                         return $this->setStatusCode($exception->getStatusCode())->respondWithError('Token has not been provided.');
-                    case \Tymon\JWTAuth\Exceptions\TokenExpiredException::class:
-                        return $this->setStatusCode($exception->getStatusCode())->respondWithError('Token has expired.');
-                    case \Tymon\JWTAuth\Exceptions\TokenInvalidException::class:
-                    case \Tymon\JWTAuth\Exceptions\TokenBlacklistedException::class:
-                        return $this->setStatusCode($exception->getStatusCode())->respondWithError('Token is invalid.');
                 }
             }
         }
@@ -112,6 +106,8 @@ class Handler extends ExceptionHandler
          * All instances of GeneralException redirect back with a flash message to show a bootstrap alert-error
          */
         if ($exception instanceof GeneralException) {
+            session()->flash('dontHide', $exception->dontHide);
+
             return redirect()->back()->withInput()->withFlashDanger($exception->getMessage());
         }
 

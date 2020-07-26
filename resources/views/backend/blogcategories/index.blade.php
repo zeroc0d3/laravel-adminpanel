@@ -74,6 +74,11 @@
     {{ Html::script(mix('js/dataTable.js')) }}
 
     <script>
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+        });
         $(function() {
             var dataTable = $('#blogcategories-table').dataTable({
                 processing: true,
@@ -100,6 +105,9 @@
                         { extend: 'pdf', className: 'pdfButton',  exportOptions: {columns: [ 0, 1, 2, 3 ]  }},
                         { extend: 'print', className: 'printButton',  exportOptions: {columns: [ 0, 1, 2, 3 ]  }}
                     ]
+                },
+                language: {
+                    @lang('datatable.strings')
                 }
             });
 

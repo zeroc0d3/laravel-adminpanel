@@ -6,6 +6,7 @@ use App\Events\Frontend\Auth\UserConfirmed;
 use App\Exceptions\GeneralException;
 use App\Models\Access\User\SocialLogin;
 use App\Models\Access\User\User;
+use App\Notifications\Frontend\Auth\UserChangedPassword;
 use App\Notifications\Frontend\Auth\UserNeedsConfirmation;
 use App\Repositories\Backend\Access\Role\RoleRepository;
 use App\Repositories\BaseRepository;
@@ -95,7 +96,7 @@ class UserRepository extends BaseRepository
         $user->email = $data['email'];
         $user->confirmation_code = md5(uniqid(mt_rand(), true));
         $user->status = 1;
-        $user->password = $provider ? null : bcrypt($data['password']);
+        $user->password = $provider ? null : Hash::make($data['password']);
         $user->is_term_accept = $data['is_term_accept'];
 
         // If users require approval, confirmed is false regardless of account type
@@ -115,7 +116,7 @@ class UserRepository extends BaseRepository
             $user->confirmed = 1;
         }
 
-        DB::transaction(function () use ($user) {
+        DB::transaction(function () use ($user, $provider) {
             if ($user->save()) {
 
                 /*
@@ -130,18 +131,18 @@ class UserRepository extends BaseRepository
                  * Assigned permissions to user
                 */
                 $user->permissions()->sync($permissions);
+
+                /*
+                 * If users have to confirm their email and this is not a social account,
+                 * send the confirmation email
+                 *
+                 * If this is a social account they are confirmed through the social provider by default
+                 */
+                if (config('access.users.confirm_email') && $provider === false) {
+                    $user->notify(new UserNeedsConfirmation($user->confirmation_code));
+                }
             }
         });
-
-        /*
-         * If users have to confirm their email and this is not a social account,
-         * send the confirmation email
-         *
-         * If this is a social account they are confirmed through the social provider by default
-         */
-        if (config('access.users.confirm_email') && $provider === false) {
-            $user->notify(new UserNeedsConfirmation($user->confirmation_code));
-        }
 
         /*
          * Return the user object
@@ -242,12 +243,6 @@ class UserRepository extends BaseRepository
         $user = $this->find($id);
         $user->first_name = $input['first_name'];
         $user->last_name = $input['last_name'];
-        $user->address = $input['address'];
-        $user->state_id = $input['state_id'];
-        $user->country_id = config('access.constants.default_country');
-        $user->city_id = $input['city_id'];
-        $user->zip_code = $input['zip_code'];
-        $user->ssn = $input['ssn'];
         $user->updated_by = access()->user()->id;
 
         if ($user->canChangeEmail()) {
@@ -289,16 +284,10 @@ class UserRepository extends BaseRepository
         $user = $this->find(access()->id());
 
         if (Hash::check($input['old_password'], $user->password)) {
-            $user->password = bcrypt($input['password']);
+            $user->password = Hash::make($input['password']);
 
             if ($user->save()) {
-                $input['email'] = $user->email;
-                // Send email to the user
-                $options = [
-                        'data'                => $input,
-                        'email_template_type' => 4,
-                    ];
-                createNotification('', $user->id, 2, $options);
+                $user->notify(new UserChangedPassword($input['password']));
 
                 return true;
             }

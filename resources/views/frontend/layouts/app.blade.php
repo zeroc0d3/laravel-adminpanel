@@ -13,6 +13,7 @@
         <!-- Meta -->
         <meta name="description" content="@yield('meta_description', 'Laravel AdminPanel')">
         <meta name="author" content="@yield('meta_author', 'Viral Solani')">
+        <meta name="keywords" content="@yield('meta_keywords', 'Laravel AdminPanel')">
         @yield('meta')
 
         <!-- Styles -->
@@ -20,12 +21,13 @@
 
         <!-- Check if the language is set to RTL, so apply the RTL layouts -->
         <!-- Otherwise apply the normal LTR layouts -->
-        @langRTL
+        @langrtl
             {{ Html::style(getRtlCss(mix('css/frontend.css'))) }}
         @else
             {{ Html::style(mix('css/frontend.css')) }}
-        @endif
-        {!! Html::style('js/select2/select2.css') !!}
+        @endlangrtl
+
+       {!! Html::style('js/select2/select2.min.css') !!}
         @yield('after-styles')
 
         <!-- Scripts -->
@@ -35,7 +37,7 @@
             ]); ?>
         </script>
         <?php
-            if(!empty($google_analytics)){
+            if (!empty($google_analytics)) {
                 echo $google_analytics;
             }
         ?>
@@ -55,9 +57,9 @@
         @yield('before-scripts')
         {!! Html::script(mix('js/frontend.js')) !!}
         @yield('after-scripts')
-        {{ Html::script('js/jquerysession.js') }}
-        {{ Html::script('js/frontend/frontend.js') }}
-        {!! Html::script('js/select2/select2.js') !!}
+        {{ Html::script('js/jquerysession.min.js') }}
+        {{ Html::script('js/frontend/frontend.min.js') }}
+        {!! Html::script('js/select2/select2.min.js') !!}
 
         <script type="text/javascript">
             if("{{Route::currentRouteName()}}" !== "frontend.user.account")

@@ -54,9 +54,14 @@ abstract class TestCase extends BaseTestCase
     /**
      * Set up tests.
      */
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
+
+        if (config('database.default') == 'sqlite') {
+            $db = app()->make('db');
+            $db->connection()->getPdo()->exec('pragma foreign_keys=0');
+        }
 
         $this->withoutExceptionHandling();
 
@@ -75,7 +80,7 @@ abstract class TestCase extends BaseTestCase
         $this->userRole = Role::find(3);
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         $this->beforeApplicationDestroyed(function () {
             DB::disconnect();

@@ -30,9 +30,11 @@ class BlogsController extends APIController
     public function index(Request $request)
     {
         $limit = $request->get('paginate') ? $request->get('paginate') : 25;
+        $orderBy = $request->get('orderBy') ? $request->get('orderBy') : 'ASC';
+        $sortBy = $request->get('sortBy') ? $request->get('sortBy') : 'created_at';
 
         return BlogsResource::collection(
-            $this->repository->getForDataTable()->paginate($limit)
+            $this->repository->getForDataTable()->orderBy($sortBy, $orderBy)->paginate($limit)
         );
     }
 
@@ -119,12 +121,15 @@ class BlogsController extends APIController
     {
         $featured_image = ($action == 'insert') ? 'required' : '';
 
+        $publish_datetime = $request->publish_datetime !== '' ? 'required|date' : 'required';
+
         $validation = Validator::make($request->all(), [
-            'name'           => 'required|max:191',
-            'featured_image' => $featured_image,
-            'content'        => 'required',
-            'categories'     => 'required',
-            'tags'           => 'required',
+            'name'              => 'required|max:191',
+            'featured_image'    => $featured_image,
+            'publish_datetime'  => $publish_datetime,
+            'content'           => 'required',
+            'categories'        => 'required',
+            'tags'              => 'required',
         ]);
 
         return $validation;

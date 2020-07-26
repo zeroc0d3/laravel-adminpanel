@@ -21,28 +21,20 @@ class DatabaseSeeder extends Seeder
         $this->command->info('=============================================');
 
         $this->call(AccessTableSeeder::class);
-        
+        $this->command->info('>> Access table seeded!');
+
         $this->call(HistoryTypeTableSeeder::class);
         $this->command->info('>> HistoryType table seeded!');
-        
-        $this->call(EmailTemplateTypeTableSeeder::class);
-        $this->command->info('>> EmailTemplateType table seeded!');
-        
-        $this->call(EmailTemplatePlaceholderTableSeeder::class);
-        $this->command->info('>> EmailTemplatePlaceholder table seeded!');
-        
-        $this->call(EmailTemplateTableSeeder::class);
-        $this->command->info('>> EmailTemplate table seeded!');
-        
+
         $this->call(SettingsTableSeeder::class);
         $this->command->info('>> Setting table seeded!');
-        
+
         $this->call(PagesTableSeeder::class);
         $this->command->info('>> Page table seeded!');
-        
+
         $this->call(MenuTableSeeder::class);
         $this->command->info('>> MenuTable table seeded!');
-        
+
         $this->call(ModulesTableSeeder::class);
         $this->command->info('>> Modules table seeded!');
 

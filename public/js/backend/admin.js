@@ -102,8 +102,8 @@ var Backend = {}; // common variable used in all the files of the backend
          *
          */
         Pages: {
-            init: function () {
-                Backend.tinyMCE.init();
+            init: function (locale) {
+                Backend.tinyMCE.init(locale);
             },
         },
 
@@ -341,9 +341,9 @@ var Backend = {}; // common variable used in all the files of the backend
                 slug: document.getElementById("slug"),
             },
 
-            init: function () {
+            init: function (locale) {
                 this.addHandlers();
-                Backend.tinyMCE.init();
+                Backend.tinyMCE.init(locale);
             },
 
             addHandlers: function () {
@@ -491,7 +491,7 @@ var Backend = {}; // common variable used in all the files of the backend
 
                 this.selectors.menuItemContainer.nestable({
                     callback: function (l, e) {
-                        this.selectors.menuItemsData.val(JSON.stringify($(l).nestable('serialise')));
+                        context.selectors.menuItemsData.val(JSON.stringify($(l).nestable('serialise')));
                     },
                     json: this.selectors.menuItemsData.val(),
                     includeContent: true,
@@ -601,13 +601,14 @@ var Backend = {}; // common variable used in all the files of the backend
          * Tiny MCE
          */
         tinyMCE: {
-            init: function () {
+            init: function (locale) {
                 tinymce.init({
+                    language: (locale === 'en_US' ? undefined : locale),
                     path_absolute: "/",
                     selector: 'textarea',
                     height: 200,
                     width: 725,
-                    theme: 'modern',
+                    theme: 'silver', // New theme available in latest tinymce
                     plugins: [
                         'advlist autolink lists link image charmap print preview hr anchor pagebreak',
                         'searchreplace wordcount visualblocks visualchars code fullscreen',
@@ -646,47 +647,6 @@ var Backend = {}; // common variable used in all the files of the backend
             }
         },
 
-        emailTemplate: {
-
-            selectors: {
-                emailtemplateSelection: document.querySelector(".select2")
-            },
-
-            init: function () {
-                Backend.emailTemplate.addHandlers();
-                Backend.tinyMCE.init();
-            },
-
-            // ! Backend.emailTemplate.addHandlers
-            addHandlers: function () {
-                jQuery(".select2").select2();
-                // to add placeholder in to active textarea
-                document.getElementById("addPlaceHolder").onclick = function (event) {
-                    Backend.emailTemplate.addPlaceHolder(event);
-                };
-                document.getElementById("showPreview").onclick = function (event) {
-                    Backend.emailTemplate.showPreview(event);
-                };
-
-            },
-
-            // ! Backend.emailTemplate.addPlaceHolder
-            addPlaceHolder: function (event) {
-                var placeHolder = document.getElementById('placeHolder').value;
-                if (placeHolder != '') {
-                    tinymce.activeEditor.execCommand('mceInsertContent', false, "[" + jQuery('#placeHolder :selected').text() + "]");
-                }
-            },
-
-            // ! Backend.emailTemplate.showPreview
-            showPreview: function (event) {
-                document.querySelector(".modal-body").innerHTML = tinyMCE.get('txtBody').getContent();
-                //jQuery( ".modal-body" ).html(tinyMCE.get('txtBody').getContent());
-                jQuery(".model-wrapper").modal('show');
-
-            },
-        },
-
         /**
          * Faq
          *
@@ -694,9 +654,9 @@ var Backend = {}; // common variable used in all the files of the backend
         Faq: {
             selectors: {},
 
-            init: function () {
+            init: function (locale) {
                 // this.addHandlers();
-                Backend.tinyMCE.init();
+                Backend.tinyMCE.init(locale);
             },
 
             addHandlers: function () {}

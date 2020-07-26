@@ -743,8 +743,8 @@ function _init() {
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('flash', require('../components/backend/Flash.vue'));
-Vue.component('export-component', require('../components/backend/Export.vue'));
+Vue.component('flash', require('../components/Flash.vue').default);
+Vue.component('export-component', require('../components/backend/Export.vue').default);
 
 const app = new Vue({
   el: '#app'

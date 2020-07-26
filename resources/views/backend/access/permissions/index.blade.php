@@ -76,6 +76,12 @@
 
     <script>
         $(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
             var dataTable = $('#permissions-table').dataTable({
                 processing: true,
                 serverSide: true,
@@ -100,12 +106,13 @@
                         { extend: 'pdf', className: 'pdfButton',  exportOptions: {columns: [ 0, 1, 2 ]  }},
                         { extend: 'print', className: 'printButton',  exportOptions: {columns: [ 0, 1, 2 ]  }}
                     ]
+                },
+                language: {
+                    @lang('datatable.strings')
                 }
             });
 
             Backend.DataTableSearch.init(dataTable);
-
-
         });
     </script>
 @endsection
